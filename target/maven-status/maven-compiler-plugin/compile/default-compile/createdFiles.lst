@@ -1,0 +1,10 @@
+com\london\food\mappers\Location.class
+com\london\food\controller\ParentController.class
+com\london\food\controller\ErrorControllerImpl.class
+com\london\food\application\Application.class
+com\london\food\mappers\PizzaPlaceJson.class
+com\london\food\service\PizzaPlaceAPIService.class
+com\london\food\mappers\ResultLocation.class
+com\london\food\mappers\PizzaPlace.class
+com\london\food\response\Response.class
+com\london\food\controller\HomeController.class

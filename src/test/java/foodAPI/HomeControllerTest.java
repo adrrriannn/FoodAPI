@@ -13,6 +13,7 @@ import org.powermock.api.mockito.PowerMockito;
 
 import com.london.food.controller.HomeController;
 import com.london.food.mappers.PizzaPlaceJson;
+import com.london.food.response.ErrorResponse;
 import com.london.food.response.PizzaResponse;
 import com.london.food.response.Response;
 import com.london.food.service.PizzaPlaceAPIService;
@@ -28,8 +29,8 @@ public class HomeControllerTest {
 	@Spy
 	private PostCodeValidator postCodeValidator;
 	
-	private final Response INVALID_POSTCODE_RESPONSE = getInvalidPostcodeResponse();
-	private final Response EMPTY_POSTCODE_RESPONSE = getEmptyPostcodeResponse();
+	private final ErrorResponse INVALID_POSTCODE_RESPONSE = getInvalidPostcodeResponse();
+	private final ErrorResponse EMPTY_POSTCODE_RESPONSE = getEmptyPostcodeResponse();
 	private final PizzaPlaceJson EXPECTED_PIZZA_LIST = getSuccessPizzaPlaceJson();
 	
 	@Before
@@ -68,26 +69,17 @@ public class HomeControllerTest {
 	}
 	
 	private PizzaPlaceJson getSuccessPizzaPlaceJson() {
-		PizzaPlaceJson json = new PizzaPlaceJson();
 		
-		return json;
+		return new PizzaPlaceJson();
 	}
 	
-	private Response getInvalidPostcodeResponse(){
-		Response response = new Response();
-		
-		response.setSuccess(false);
-		response.setContent(PostCodeValidator.ERROR_INVALID_POSTCODE);
-		
-		return response;
+	private ErrorResponse getInvalidPostcodeResponse(){
+
+		return new ErrorResponse(false, PostCodeValidator.ERROR_INVALID_POSTCODE);
 	}
 	
-	private Response getEmptyPostcodeResponse(){
-		Response response = new Response();
+	private ErrorResponse getEmptyPostcodeResponse(){
 		
-		response.setSuccess(false);
-		response.setContent(PostCodeValidator.ERROR_EMPTY_POSTCODE);
-		
-		return response;
+		return new ErrorResponse(false,PostCodeValidator.ERROR_EMPTY_POSTCODE);
 	}
 }

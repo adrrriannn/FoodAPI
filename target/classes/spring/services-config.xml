@@ -5,8 +5,12 @@
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 	
-	<bean id="PizzaPlaceAPIService" class="com.london.food.service.PizzaPlaceAPIService">
+	
+	<bean id="PostCodeLocationService" class="com.london.food.service.PostCodeLocationService">
 		<constructor-arg value="${api.postcode.url}" />
+	</bean>
+	
+	<bean id="PizzaPlaceAPIService" class="com.london.food.service.PizzaPlaceAPIService">
 		<constructor-arg value="${api.googlePlaces.url}" />
 		<constructor-arg value="${api.googlePlaces.key}" />
 	</bean>

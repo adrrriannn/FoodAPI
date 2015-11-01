@@ -15,7 +15,7 @@ import com.london.food.security.ApplicationSecurity;
 @ImportResource({"classpath:spring/services-config.xml"})
 @PropertySource(value="classpath:application.properties")
 @Configuration
-@ComponentScan(basePackageClasses = HomeController.class)
+@ComponentScan(basePackages = {"com.london.food.controller", "com.london.food.validator"})
 @EnableAutoConfiguration
 public class Application {
 	

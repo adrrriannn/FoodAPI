@@ -2,37 +2,31 @@ package com.london.food.service;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
 import com.london.food.mappers.Location;
-import com.london.food.mappers.LocationJson;
 import com.london.food.mappers.PizzaPlaceJson;
 
 public class PizzaPlaceAPIService {
 
-protected String urlPostCode, urlPizzaPlace, googleAPIKey;
+protected String urlPizzaPlace, googleAPIKey;
 
+	@Autowired
+	private PostCodeLocationService postalCodeLocationService;
 	
-	public PizzaPlaceAPIService(String urlPostCode, String urlPizzaPlace, String googleAPIKey) {
-		this.urlPostCode = urlPostCode;
+	public PizzaPlaceAPIService(String urlPizzaPlace, String googleAPIKey) {
 		this.urlPizzaPlace = urlPizzaPlace;
 		this.googleAPIKey = googleAPIKey;
 	}
 
 	public PizzaPlaceJson readFromUrl(Map<String, String> params) {
 		
-		RestTemplate restTemplate = new RestTemplate();
-
-		LocationJson resultLocation = restTemplate.getForObject(urlPostCode, LocationJson.class, params);
-		Location location = resultLocation.getResult();
+		Location location = postalCodeLocationService.getLocationFromPostalCode(params);
 		
-		Double latitude = location.getLatitude();
-		Double longitude = location.getLongitude();
-
-		
-		params.put("location", latitude.toString() + "," + longitude.toString());
+		params.put("location", location.getLatitude().toString() + "," + location.getLongitude().toString());
 		params.put("googleAPIKey", googleAPIKey);
-
-		return restTemplate.getForObject(urlPizzaPlace, PizzaPlaceJson.class, params);
+		
+		return new RestTemplate().getForObject(urlPizzaPlace, PizzaPlaceJson.class, params);
 	}
 }

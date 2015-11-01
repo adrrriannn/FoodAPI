@@ -1,6 +1,6 @@
 # FoodAPI
 
-Example creating an API using Spring Boot and Spring Security. This API returns a list of locations for pizza restaurants near by the postal code provided.
+Example creating an API using Spring Boot and Spring Security. This API returns a list of locations for pizza restaurants nearby the postal code provided.
 
 ##Authentication
 

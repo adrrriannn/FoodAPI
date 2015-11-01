@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.london.food.controller.HomeController;
 import com.london.food.security.ApplicationSecurity;
 
 @ImportResource({"classpath:spring/services-config.xml"})

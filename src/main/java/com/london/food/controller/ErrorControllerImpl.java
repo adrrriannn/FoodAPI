@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.london.food.response.ErrorResponse;
 import com.london.food.response.Response;
 
 @RestController
-public class ErrorControllerImpl extends ParentController implements ErrorController{
+public class ErrorControllerImpl implements ErrorController {
 	
 	private static final String PATH = "/error";
 
@@ -23,6 +24,6 @@ public class ErrorControllerImpl extends ParentController implements ErrorContro
     @ExceptionHandler(value = {Exception.class})
     public Response error(Exception e, HttpServletRequest request) {
         String message = e.getCause() != null? e.getCause().getMessage() : "There was an error while processing the request.";
-        return buildResponse(Boolean.FALSE, message);
+        return new ErrorResponse(Boolean.FALSE, message);
     }
 }

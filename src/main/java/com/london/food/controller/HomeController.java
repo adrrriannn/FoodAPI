@@ -18,7 +18,7 @@ import com.london.food.service.PizzaPlaceAPIService;
 import com.london.food.validator.PostCodeValidator;
 
 @RestController
-public class HomeController extends ParentController {
+public class HomeController {
 
 	@Autowired
 	private PizzaPlaceAPIService pizzaPlaceAPIService;
